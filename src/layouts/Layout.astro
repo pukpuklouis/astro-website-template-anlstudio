@@ -1,3 +1,16 @@
+---
+// src/layouts/Layout.astro
+// Main layout component with navigation and authentication
+
+import Navigation from '../components/Navigation.astro';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Astro Website Template' } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,18 +18,59 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
 	<body>
+		<Navigation />
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
+	:root {
+		--color-primary: #3b82f6;
+		--color-primary-dark: #2563eb;
+		--color-text: #111827;
+		--color-text-light: #4b5563;
+		--color-background: #f9fafb;
+		--color-border: #e5e7eb;
+	}
+
 	html,
 	body {
 		margin: 0;
+		padding: 0;
 		width: 100%;
-		height: 100%;
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+			'Helvetica Neue', Arial, sans-serif;
+		background-color: var(--color-background);
+		color: var(--color-text);
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	a {
+		color: var(--color-primary);
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: var(--color-primary-dark);
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin-top: 0;
+		color: var(--color-text);
+	}
+
+	p {
+		color: var(--color-text-light);
+		line-height: 1.6;
+	}
+
+	button {
+		cursor: pointer;
 	}
 </style>

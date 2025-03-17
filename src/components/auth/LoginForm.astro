@@ -1,0 +1,129 @@
+---
+// src/components/auth/LoginForm.astro
+// A simple login form component
+
+// You can pass custom redirect URLs as props
+interface Props {
+  callbackUrl?: string;
+  error?: string;
+}
+
+const { callbackUrl = '/', error } = Astro.props;
+---
+
+<div class="auth-form-container">
+  {error && (
+    <div class="error-message">
+      {error === 'CredentialsSignin' ? 'Invalid email or password' : error}
+    </div>
+  )}
+  
+  <form action="/api/auth/signin" method="post" class="auth-form">
+    <input type="hidden" name="callbackUrl" value={callbackUrl} />
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        placeholder="your@email.com" 
+        required 
+        autocomplete="email"
+      />
+    </div>
+    
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        placeholder="••••••••" 
+        required 
+        autocomplete="current-password"
+      />
+    </div>
+    
+    <button type="submit" class="submit-button">Sign In</button>
+  </form>
+  
+  <div class="auth-links">
+    <a href="/register">Don't have an account? Sign up</a>
+  </div>
+</div>
+
+<style>
+  .auth-form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  
+  .error-message {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    font-size: 0.875rem;
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  .form-group input {
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .submit-button {
+    padding: 0.75rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submit-button:hover {
+    background-color: #2563eb;
+  }
+  
+  .auth-links {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+  }
+  
+  .auth-links a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  
+  .auth-links a:hover {
+    text-decoration: underline;
+  }
+</style>

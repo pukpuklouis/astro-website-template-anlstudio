@@ -1,0 +1,141 @@
+---
+// src/pages/dashboard.astro
+// Protected dashboard page that requires authentication
+
+import Layout from '../layouts/Layout.astro';
+import UserProfile from '../components/auth/UserProfile.astro';
+import type { User } from '../types';
+
+// If user is not logged in, redirect to login page
+if (!Astro.locals.user) {
+  return Astro.redirect(`/login?callbackUrl=${encodeURIComponent(Astro.url.pathname)}`);
+}
+
+// Cast the user to the User type
+const user = Astro.locals.user as User;
+---
+
+<Layout title="Dashboard | Astro Website Template">
+  <main class="container">
+    <h1>Dashboard</h1>
+    <p class="welcome">Welcome to your personal dashboard</p>
+    
+    <div class="dashboard-content">
+      <div class="user-section">
+        <h2>Your Profile</h2>
+        <UserProfile user={user} />
+      </div>
+      
+      <div class="content-section">
+        <h2>Protected Content</h2>
+        <p>This content is only visible to authenticated users.</p>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Your Data</h3>
+            <p>View and manage your personal data</p>
+            <a href="#" class="card-link">View Data</a>
+          </div>
+          <div class="card">
+            <h3>Settings</h3>
+            <p>Configure your account settings</p>
+            <a href="#" class="card-link">Go to Settings</a>
+          </div>
+          <div class="card">
+            <h3>Activity</h3>
+            <p>View your recent activity</p>
+            <a href="#" class="card-link">View Activity</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .welcome {
+    color: #6b7280;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-content {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .user-section, .content-section {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card p {
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+  
+  .card-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .card-link:hover {
+    background-color: #2563eb;
+  }
+</style>

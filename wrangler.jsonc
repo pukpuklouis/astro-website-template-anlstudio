@@ -16,6 +16,16 @@
 	},
 	"observability": {
 		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "auth_db",
+			"database_id": "placeholder-database-id"
+		}
+	],
+	"vars": {
+		"AUTH_SECRET": "placeholder-auth-secret-replace-in-production"
 	}
 	/**
 	 * Smart Placement

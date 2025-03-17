@@ -1,0 +1,46 @@
+---
+// src/pages/register.astro
+// Registration page
+
+import Layout from '../layouts/Layout.astro';
+import RegisterForm from '../components/auth/RegisterForm.astro';
+
+// Get any error from the URL query parameters
+const error = Astro.url.searchParams.get('error') || undefined;
+// Get the callback URL from the query parameters or default to '/'
+const callbackUrl = Astro.url.searchParams.get('callbackUrl') || '/';
+
+// If user is already logged in, redirect to the callback URL
+if (Astro.locals.user) {
+  return Astro.redirect(callbackUrl);
+}
+---
+
+<Layout title="Register | Astro Website Template">
+  <main class="container">
+    <h1>Create an Account</h1>
+    <p class="description">Sign up to get started</p>
+    
+    <RegisterForm error={error} callbackUrl={callbackUrl} />
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .description {
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+</style>
