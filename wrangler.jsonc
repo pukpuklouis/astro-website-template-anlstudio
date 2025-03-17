@@ -25,8 +25,10 @@
 		}
 	],
 	"vars": {
-		"AUTH_SECRET": "placeholder-auth-secret-replace-in-production"
-	}
+		// AUTH_SECRET is now managed through environment variables
+		// Use `wrangler secret put AUTH_SECRET` for production
+		// Use .dev.vars file for local development
+	},
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

@@ -11,11 +11,33 @@
 ├── public/
 │   └── favicon.svg
 ├── src/
+│   ├── assets/
+│   │   ├── astro.svg
+│   │   └── background.svg
+│   ├── components/
+│   │   ├── Navigation.astro
+│   │   ├── Welcome.astro
+│   │   └── auth/
+│   │       ├── LoginForm.astro
+│   │       ├── RegisterForm.astro
+│   │       └── UserProfile.astro
 │   ├── layouts/
 │   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── lib/
+│   │   └── auth.ts
+│   ├── pages/
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   ├── dashboard.astro
+│   │   ├── index.astro
+│   │   ├── login.astro
+│   │   └── register.astro
+│   ├── env.d.ts
+│   ├── middleware.ts
+│   └── types.ts
+├── schema.sql
+├── package.json
+└── wrangler.jsonc
 ```
 
 若要了解更多關於 Astro 專案結構的資訊，請參考[專案結構指南](https://docs.astro.build/en/basics/project-structure/)。
@@ -30,6 +52,10 @@
 | `bun run dev`             | 啟動本地開發伺服器，網址為 `localhost:4321`     |
 | `bun run build`           | 建立生產版本網站到 `./dist/` 資料夾             |
 | `bun run preview`         | 在部署前本地預覽建置結果                         |
+| `bun run deploy`          | 建置並部署到 Cloudflare                          |
+| `bun run db:setup`        | 初始化 D1 資料庫結構                            |
+| `bun run db:studio`       | 啟動 D1 資料庫管理介面                          |
+| `bun run auth:verify`     | 驗證 Better Auth 設定是否正確                   |
 | `bun run astro ...`       | 執行 CLI 指令，如 `astro add`, `astro check`     |
 | `bun run astro -- --help` | 獲取 Astro CLI 的使用說明                       |
 
@@ -54,5 +80,10 @@
 4. 初始化新的 Git 儲存庫：`git init`
 5. 安裝相依套件：`bun install`
 6. 啟動開發伺服器：`bun run dev`
+7. 設定 Better Auth：`bun run auth:verify`
+
+### 設定 Better Auth
+
+請按照[Better Auth 設定說明](auth_setup_zhTW.md)進行設定。
 
 開始開發你的網站吧！

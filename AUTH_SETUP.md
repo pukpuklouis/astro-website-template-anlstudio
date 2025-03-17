@@ -36,12 +36,22 @@ Update the `wrangler.jsonc` file with your database ID:
 
 ### 2. Set Environment Variables
 
-The authentication system requires a secret key for secure operations. Set the `AUTH_SECRET` in your `wrangler.jsonc` file:
+The authentication system requires a secret key for secure operations. For security reasons, we don't store this directly in the `wrangler.jsonc` file.
 
-```json
-"vars": {
-  "AUTH_SECRET": "your-long-secure-random-string"
-}
+#### For Local Development:
+
+Create a `.dev.vars` file in your project root (this file should be in your .gitignore):
+
+```bash
+AUTH_SECRET=your-long-secure-random-string
+```
+
+#### For Production:
+
+Set the secret using Wrangler CLI:
+
+```bash
+wrangler secret put AUTH_SECRET
 ```
 
 For production, use a strong, randomly generated string at least 32 characters long.

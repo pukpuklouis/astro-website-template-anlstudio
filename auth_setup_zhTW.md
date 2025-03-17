@@ -36,12 +36,22 @@ wrangler d1 create auth_db
 
 ### 2. 設定環境變數
 
-認證系統需要一個密鑰來進行安全操作。在您的 `wrangler.jsonc` 檔案中設定 `AUTH_SECRET`：
+認證系統需要一個密鑰來進行安全操作。基於安全考量，我們不直接將此密鑰存儲在 `wrangler.jsonc` 檔案中。
 
-```json
-"vars": {
-  "AUTH_SECRET": "您的長安全隨機字串"
-}
+#### 本地開發環境：
+
+在專案根目錄創建一個 `.dev.vars` 檔案（此檔案應該在 .gitignore 中）：
+
+```
+AUTH_SECRET=您的長安全隨機字串
+```
+
+#### 生產環境：
+
+使用 Wrangler CLI 設定密鑰：
+
+```bash
+wrangler secret put AUTH_SECRET
 ```
 
 對於生產環境，請使用至少 32 個字符長的強隨機生成字串。
