@@ -36,3 +36,4 @@ bun-debug.log*
 
 # vscode    
 .vscode
+bun.lockb
