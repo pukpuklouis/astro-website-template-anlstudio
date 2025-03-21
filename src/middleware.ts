@@ -17,14 +17,21 @@ export const onRequest = defineMiddleware(async ({ locals, request }, next) => {
     const env = locals.runtime.env;
     
     // Create the auth instance with the environment
-    const betterAuth = createAuth(env);
+    const auth = createAuth(env);
     
     // Get the session from the request
-    const session = await betterAuth.getSession(request);
+    const authSession = await auth.api.getSession({
+      headers: request.headers
+    });
     
     // Add user and session to locals for use in all routes
-    locals.user = session?.user || null;
-    locals.session = session;
+    if (authSession) {
+      locals.user = authSession.user;
+      locals.session = authSession;
+    } else {
+      locals.user = null;
+      locals.session = null;
+    }
     
     // Continue to the next middleware or route handler
     return next();

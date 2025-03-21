@@ -5,6 +5,14 @@ import type { APIRoute } from 'astro';
 import { createAuth } from '../../../lib/auth';
 
 /**
+ * Required for dynamic API routes in SSG mode
+ * This tells Astro that this route should be handled at runtime
+ */
+export function getStaticPaths() {
+  return [];
+}
+
+/**
  * Handle all authentication API requests
  * 
  * This endpoint handles all authentication-related requests:
@@ -21,10 +29,10 @@ export const all: APIRoute = async ({ request, locals }) => {
     const env = locals.runtime.env;
     
     // Create the auth instance with the environment
-    const betterAuth = createAuth(env);
+    const auth = createAuth(env);
     
     // Handle the authentication request
-    return await betterAuth.handleRequest(request);
+    return await auth.handler(request);
   } catch (error) {
     console.error('Auth API error:', error);
     

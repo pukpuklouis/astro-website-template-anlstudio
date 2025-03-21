@@ -10,7 +10,6 @@
 		"deploy": "astro build && wrangler deploy",
 		"cf-typegen": "wrangler types",
 		"db:setup": "wrangler d1 execute DB --local --file=./schema.sql",
-		"db:studio": "wrangler d1 studio DB --local",
 		"auth:verify": "node ./scripts/verify-auth.js"
 	},
 	"dependencies": {

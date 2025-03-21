@@ -4,6 +4,9 @@ dist/
 # generated types
 .astro/
 
+# development documentation
+.docs
+
 # dependencies
 node_modules/
 
@@ -28,3 +31,5 @@ bun-debug.log*
 .wrangler
 .dev.vars*
 
+# cursor
+.cursor

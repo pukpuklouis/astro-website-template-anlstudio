@@ -18,22 +18,34 @@ interface Env {
 declare namespace App {
   interface Locals extends Runtime {
     user: User | null;
-    session: Session | null;
+    session: BetterAuthSession | null;
   }
 }
 
-// User and Session types
+// User type
 interface User {
   id: string;
   name?: string | null;
   email?: string | null;
   image?: string | null;
-  emailVerified?: Date | null;
+  emailVerified?: boolean | null;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-interface Session {
+// Better Auth session type
+interface BetterAuthSession {
+  session: {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+    expiresAt: Date;
+    token: string;
+    ipAddress?: string | null;
+    userAgent?: string | null;
+  };
   user: User;
-  expires: Date;
 }
 
 // Add D1Database type

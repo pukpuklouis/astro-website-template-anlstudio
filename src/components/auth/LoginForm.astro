@@ -48,6 +48,12 @@ const { callbackUrl = '/', error } = Astro.props;
     <button type="submit" class="submit-button">Sign In</button>
   </form>
   
+  <div class="social-login">
+    <a href="/api/auth/signin/google" class="social-button google">
+      Sign in with Google
+    </a>
+  </div>
+  
   <div class="auth-links">
     <a href="/register">Don't have an account? Sign up</a>
   </div>
@@ -110,6 +116,33 @@ const { callbackUrl = '/', error } = Astro.props;
   
   .submit-button:hover {
     background-color: #2563eb;
+  }
+  
+  .social-login {
+    margin-top: 1.5rem;
+  }
+  
+  .social-button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .social-button.google {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .social-button.google:hover {
+    background-color: #f8f9fa;
   }
   
   .auth-links {
