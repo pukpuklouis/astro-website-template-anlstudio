@@ -33,3 +33,6 @@ bun-debug.log*
 
 # cursor
 .cursor
+
+# vscode    
+.vscode
