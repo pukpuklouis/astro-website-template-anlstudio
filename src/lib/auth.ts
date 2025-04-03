@@ -1,5 +1,4 @@
-@ts-nocheck
-
+// @ts-nocheck
 // src/lib/auth.ts
 // Better Auth configuration with Cloudflare D1
 
@@ -92,7 +91,7 @@ export function getActiveProviders() {
 /**
  * Rate limiting helper functions
  */
-export const rateLimiting = {
+const rateLimiting = {
   /**
    * Check if a user is rate limited
    * @param db D1Database instance
@@ -169,7 +168,7 @@ export const rateLimiting = {
 /**
  * Password utilities
  */
-export const passwordUtils = {
+const passwordUtils = {
   /**
    * Hash a password using Argon2id
    * @param password Plain text password
@@ -204,7 +203,7 @@ export const passwordUtils = {
 /**
  * Session management utilities
  */
-export const sessionUtils = {
+const sessionUtils = {
   /**
    * Generate a secure random token
    * @returns Secure random token as a hex string
@@ -304,7 +303,7 @@ export const sessionUtils = {
 /**
  * User management utilities
  */
-export const userUtils = {
+const userUtils = {
   /**
    * Create a new user
    * @param db D1Database instance
@@ -463,7 +462,7 @@ export const userUtils = {
  * @param env Cloudflare environment with D1 database and secrets
  * @returns Configured Better Auth instance
  */
-export const createAuth = (env: Env) => {
+export function createAuth(env: Env) {
   // Initialize Better Auth with D1 adapter
   const auth = betterAuth({
     adapter: {
@@ -554,7 +553,7 @@ export const createAuth = (env: Env) => {
   });
 
   return auth;
-};
+}
 
 // Export utility functions for use in other parts of the application
 export {

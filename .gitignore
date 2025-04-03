@@ -70,3 +70,6 @@ README-task-master.md
 docs/_.windsurfrules
 .windsurfrules
 
+scripts/task-complexity-report.json
+#wrangler
+wrangler.toml
