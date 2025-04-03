@@ -6,6 +6,7 @@ dist/
 
 # development documentation
 .docs
+docs/*
 
 # dependencies
 node_modules/
@@ -37,3 +38,35 @@ bun-debug.log*
 # vscode    
 .vscode
 bun.lockb
+
+# Added by Claude Task Master
+# Logs
+logs
+*.log
+dev-debug.log
+# Dependency directories
+# Environment variables
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# OS specific
+# Task files
+tasks.json
+tasks/ 
+
+# keep task-master out
+scripts/dev.js
+scripts/example_prd.txt
+scripts/README.md
+README-task-master.md
+
+
+
+#windsurfrules
+docs/_.windsurfrules
+.windsurfrules
+
