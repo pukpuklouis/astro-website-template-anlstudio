@@ -1,6 +1,10 @@
 import { useState } from 'react';
-import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+interface ErrorResponse {
+  error: string;
+}
 
 export default function SignupForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +28,7 @@ export default function SignupForm() {
       });
 
       if (!response.ok) {
-        const data = await response.json();
+        const data = await response.json() as ErrorResponse;
         throw new Error(data.error || 'Failed to sign up');
       }
 
